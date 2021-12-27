@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./",
-    "build":"tsc -p ."
+    "build": "tsc -p ."
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,11 @@
   },
   "homepage": "https://github.com/BielPinto/DIO-NODE-USER-AUTHENCATION-API#readme",
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@types/node": "^17.0.5",
     "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
   }
 }
