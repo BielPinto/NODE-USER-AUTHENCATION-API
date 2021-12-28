@@ -15,13 +15,12 @@ authorizationRoute.post('/token', basicAuthenticationMiddleware, async (req: Req
         }
         const jwtPayload = { username: user.username }
         const jwtOption = { subject: user.uuid }
-        const secretKey = 'my_sercret_key';
+        const secretKey = 'my_secret_key';
 
         const jwt = JWT.sign(jwtPayload, secretKey, jwtOption);
         res.status(StatusCodes.OK).json({ token: jwt });
 
     } catch (error) {
-        console.log(error)
         next(error);
     }
 

@@ -66,9 +66,6 @@ class UserRepository {
         RETURNING uuid
         `
         const values = [user.username, user.password];
-
-        console.log(values)
-
         const { rows } = await db.query<{ uuid: string }>(script, values);
         const [newUser] = rows;
         return newUser.uuid;

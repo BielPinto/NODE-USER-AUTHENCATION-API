@@ -11,7 +11,6 @@ import userRepository from '../repositories/user.repository';
 const usersRoute = Router();
 
 usersRoute.get('/users', async (req: Request,res: Response,next: NextFunction) =>{
-    console.log(req.headers['authorization']);
     const users = await userRepository.findAllUsers();
     res.status(StatusCodes.OK).send(users);
 });
@@ -31,7 +30,6 @@ usersRoute.get('/users/:uuid', async (req: Request<{uuid: string}>,res: Response
 
 usersRoute.post('/users', async (req: Request,res: Response,next: NextFunction) =>{
     const newUser = req.body;
-    console.log('antes ',newUser)
     const uuid = await userRepository.create(newUser);
 
     res.status(StatusCodes.CREATED).send(uuid);
