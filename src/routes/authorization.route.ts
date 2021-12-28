@@ -5,6 +5,8 @@ import basicAuthenticationMiddleware from "../middlewares/basic.authentication.m
 import ForbiddenError from "../models/errors/forbidden.error.model";
 import jwtAuthenticationMiddleware from "../middlewares/jwt-authentication.middleware";
 
+
+
 const authorizationRoute = Router();
 
 authorizationRoute.post('/token', basicAuthenticationMiddleware, async (req: Request, res: Response, next: NextFunction) => {
@@ -15,10 +17,11 @@ authorizationRoute.post('/token', basicAuthenticationMiddleware, async (req: Req
             throw new ForbiddenError('Usuário não informado!');
         }
         const jwtPayload = { username: user.username }
-        const jwtOption = { subject: user.uuid }
         const secretKey = 'my_secret_key';
+        const jwtOptions = { subject: user?.uuid,expiresIn:'15m' };
+      
 
-        const jwt = JWT.sign(jwtPayload, secretKey, jwtOption);
+        const jwt = JWT.sign(jwtPayload, secretKey, jwtOptions);
         res.status(StatusCodes.OK).json({ token: jwt });
 
     } catch (error) {
